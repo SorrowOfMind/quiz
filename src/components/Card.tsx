@@ -15,7 +15,7 @@ const Card: React.FC<Props> = ({question,answers,cb,userAnswer,questionNum,quest
             <p className="question-num">Question {questionNum}/{questionsTotal}</p>
             <p dangerouslySetInnerHTML={{__html: question}} ></p>
             <div className="answers">
-                {answers.map(answer => (
+                {answers && answers.map(answer => (
                     <div>
                         <button disabled={userAnswer} onClick={cb}>
                             <span dangerouslySetInnerHTML={{__html: answer}}></span>
