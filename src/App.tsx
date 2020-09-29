@@ -4,18 +4,29 @@ import {fetchQuestions, Difficulty, QuestionState} from './API';
 
 const TOTAL_QUESTIONS = 10;
 
+type AnswerObject = {
+  question: string,
+  answer: string,
+  correct: boolean,
+  correctAnswer: string
+}
+
 function App() {
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
   const [questionNum, setquestionNum] = useState(0);
-  const [userAnswers, setUserAnswers] = useState([]);
+  const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [end, setEnd] = useState(false);
 
   console.log(fetchQuestions(10, Difficulty.EASY));
 
   const startQuiz = async () => {
+    setLoading(true);
+    setEnd(false);
 
+    const newQuestions = await fetchQuestions(TOTAL_QUESTIONS, Difficulty.EASY);
+    setQuestions(newQuestions);
   }
 
   const checkAnswer = (e:React.MouseEvent<HTMLButtonElement>) => {
