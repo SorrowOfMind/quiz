@@ -32,7 +32,18 @@ function App() {
   }
 
   const checkAnswer = (e:React.MouseEvent<HTMLButtonElement>) => {
-
+    if (!end) {
+      const answer = e.currentTarget.value;
+      const correct = questions[questionNum].correct_answer === answer;
+      if (correct) setScore(prevScore => prevScore + 1);
+      const answerObj = {
+        question: questions[questionNum].question,
+        answer,
+        correct,
+        correctAnswer: questions[questionNum].correct_answer
+      };
+      setUserAnswers(prev => [...prev, answerObj]);
+    }
   }
 
   const nextQuestion = () => {
@@ -49,15 +60,14 @@ function App() {
       </header>
       <main>
         {(!loading && !end) && <Card 
-          questionNum={questionNum} 
+          questionNum={questionNum}
           questionsTotal={TOTAL_QUESTIONS}
           question={questions[questionNum].question}
           answers={questions[questionNum].answers}
           userAnswer={userAnswers ? userAnswers[questionNum] : null}
           cb={checkAnswer}
           />}
-        {!end && !loading && userAnswers.length === questionNum +1 &&
-        <button className="next-btn" onClick={nextQuestion}>Next</button>}
+        {!end && !loading && userAnswers.length === questionNum +1 && questionNum !== TOTAL_QUESTIONS - 1 && <button className="next-btn" onClick={nextQuestion}>Next</button>}
       </main>
     </div>
   );
