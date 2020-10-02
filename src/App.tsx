@@ -4,7 +4,7 @@ import {fetchQuestions, Difficulty, QuestionState} from './API';
 
 const TOTAL_QUESTIONS = 10;
 
-type AnswerObject = {
+export type AnswerObject = {
   question: string,
   answer: string,
   correct: boolean,
@@ -47,7 +47,10 @@ function App() {
   }
 
   const nextQuestion = () => {
+    const nextQuestion = questionNum + 1;
 
+    if (nextQuestion === TOTAL_QUESTIONS) setEnd(true);
+    else setQuestionNum(nextQuestion);
   }
 
   return (
@@ -64,7 +67,7 @@ function App() {
           questionsTotal={TOTAL_QUESTIONS}
           question={questions[questionNum].question}
           answers={questions[questionNum].answers}
-          userAnswer={userAnswers ? userAnswers[questionNum] : null}
+          userAnswer={userAnswers && userAnswers[questionNum]}
           cb={checkAnswer}
           />}
         {!end && !loading && userAnswers.length === questionNum +1 && questionNum !== TOTAL_QUESTIONS - 1 && <button className="next-btn" onClick={nextQuestion}>Next</button>}
