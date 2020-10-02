@@ -1,10 +1,12 @@
 import React from 'react';
+import {AnswerObject} from '../App';
+// import {Wrapper, ButtonWrapper} from './Card.styles';
 
 type Props = {
     question:string;
     answers:string[];
-    cb: any;
-    userAnswer:any;
+    cb: (e:React.MouseEvent<HTMLButtonElement>) => void;
+    userAnswer:AnswerObject | undefined;
     questionNum:number;
     questionsTotal:number;
 }
@@ -17,7 +19,7 @@ const Card: React.FC<Props> = ({question,answers,cb,userAnswer,questionNum,quest
             <div className="answers">
                 {answers.map(answer => (
                     <div key={answer}>
-                        <button disabled={userAnswer} value={answer} onClick={cb}>
+                        <button disabled={!!userAnswer} value={answer} onClick={cb}>
                             <span dangerouslySetInnerHTML={{__html: answer}}></span>
                         </button>
                     </div>
