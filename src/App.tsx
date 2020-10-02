@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Card from './components/Card';
 import {fetchQuestions, Difficulty, QuestionState} from './API';
+import {GlobalStyle} from './App.styles';
 
 const TOTAL_QUESTIONS = 10;
 
@@ -54,11 +55,13 @@ function App() {
   }
 
   return (
+    <>
+    <GlobalStyle />
     <div className="App">
       <header>
         <h1>QUIZ</h1>
         {(end || userAnswers.length === TOTAL_QUESTIONS) && (<button className="start-btn" onClick={startQuiz}>Start quiz</button>)}
-        {!end && <p className="score">Score: </p>}
+        {!end && <p className="score">Score: {score}</p>}
         {loading && <p>Loading...</p>}
       </header>
       <main>
@@ -73,6 +76,7 @@ function App() {
         {!end && !loading && userAnswers.length === questionNum +1 && questionNum !== TOTAL_QUESTIONS - 1 && <button className="next-btn" onClick={nextQuestion}>Next</button>}
       </main>
     </div>
+    </>
   );
 }
 
