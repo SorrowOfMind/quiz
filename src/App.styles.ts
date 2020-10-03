@@ -1,7 +1,7 @@
 import styled, {createGlobalStyle} from 'styled-components';
 import bg from './assets/bg.jpg';
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle `
     html {
         height: 100%;
     }
@@ -14,13 +14,14 @@ export const GlobalStyle = createGlobalStyle`
         display: flex;
         justify-content: center;
     }
+
     * {
         box-sizing: border-box;
         font-family: 'Catamaran', sans-serif;
     }
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,7 +37,32 @@ export const Wrapper = styled.div`
     }
 
     h1 {
-        
+        font-family: Fasctinate Inline;
+        background-image: linear-gradient(180deg, #fff, #B79917);
+        background-size: 100%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-background-clip: text;
+        -moz-text-fill-color: transparent;
+        filter: drop-shadow(3px 3px #B79917);
+        font-size: 100px;
+        text-align: center;
+        margin: 20px;
     }
 
-`
+    .start-btn, .next-btn {
+        cursor: pointer;
+        background: linear-gradient(180deg, #ffffff, #ffcc91);
+        border: 2px solid #d38558;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        height: 40px;
+        margin: 20px 0;
+        padding: 0 40px;
+      }
+
+      .start-btn {
+        max-width: 200px;
+      }
+`;
